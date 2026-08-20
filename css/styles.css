@@ -1,0 +1,273 @@
+/* ============================================================
+   They Have a Theory — landing page
+   Palette is pulled straight off the podcast artwork:
+   warm tan paper, burnt-sienna ink, a soft sage for accents.
+   ============================================================ */
+
+:root {
+  /* core — sampled straight out of assets/logo.png so the artwork
+     sits on the page with no visible seam */
+  --tan:        #ebc07a;
+  --tan-deep:   #dfae62;
+  --tan-soft:   #f2d5a3;
+  --cream:      #faefd6;
+  --paper:      #fffaee;  /* cards sitting on the cream section */
+  --ink:        #844226;
+  --ink-deep:   #5f2f19;
+  --ink-soft:   #a4674a;
+  --text:       #4a2e1e;
+  --text-muted: #6f5039;
+  --sage:       #6e8059;
+
+  /* type */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Karla", "Helvetica Neue", Arial, sans-serif;
+  --font-mark:    "Fraunces", "Iowan Old Style", Georgia, serif;
+
+  /* rhythm */
+  --wrap:  min(1080px, 100% - 2.5rem);
+  --pad-y: clamp(4rem, 10vw, 7.5rem);
+  --radius: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  /* cream, not tan: on a viewport taller than the page this is the
+     colour that fills the gap above the footer, and cream is where
+     the top-to-bottom lightening is meant to end up */
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.96rem + 0.25vw, 1.125rem);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { width: var(--wrap); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--ink); color: var(--cream);
+  padding: 0.75rem 1.25rem; border-radius: 0 0 var(--radius) 0; z-index: 10;
+}
+.skip-link:focus { left: 0; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ink-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Paper grain. Sits ABOVE the content, not behind it — otherwise the
+   logo PNG is the one thing on the page without texture and its tan
+   field reads as a visible rectangle against the grained background. */
+.grain {
+  position: fixed; inset: 0; z-index: 5; pointer-events: none;
+  opacity: 0.2; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* ============================ HERO ============================ */
+
+.hero {
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(3.5rem, 9vw, 6rem);
+  background: var(--tan);
+  text-align: center;
+}
+.hero__inner { display: grid; justify-items: center; gap: 0; }
+
+.logo { margin: 0 0 1rem; width: 100%; max-width: 620px; }
+
+.logo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* the artwork carries its own tan field; this keeps it seamless
+     on the page background even while the file is still loading */
+  background: var(--tan);
+}
+
+/* "coming out soon" pill */
+.status {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  margin: 0 0 1.5rem;
+  padding: 0.5rem 1.15rem;
+  background: var(--cream);
+  border: 2px solid var(--ink-soft);
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-deep);
+  box-shadow: 0 6px 0 -2px rgba(124, 59, 31, 0.18);
+}
+.status__dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--sage);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.8); }
+}
+
+.tagline {
+  max-width: 40ch;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.9vw, 1.6rem);
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ============================ SECTIONS ============================ */
+
+/* The page steps steadily lighter from top to bottom — hero tan,
+   then tan-soft, then cream — before landing on the dark footer.
+   All three share the same hue (~37deg) and saturation (~72%);
+   only the lightness moves: 70% -> 79% -> 91%. */
+.section { padding: var(--pad-y) 0; }
+.section--alt   { background: var(--tan-soft); }
+.section--light { background: var(--cream); }
+
+.section__title {
+  margin: 0 0 1.75rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--ink-deep);
+}
+
+/* ============================ PLATFORMS ============================ */
+
+.platforms {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.platform {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 1rem 1.15rem;
+  border: 2px solid var(--ink-soft);
+  border-radius: var(--radius);
+  background: var(--cream);
+  color: var(--ink-deep);
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+a.platform:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 -4px rgba(124, 59, 31, 0.2);
+}
+.platform--pending {
+  background: transparent;
+  border-style: dashed;
+  color: var(--text-muted);
+  cursor: default;
+}
+.platform__icon {
+  flex: none; width: 26px; height: 26px;
+  display: grid; place-items: center;
+  color: var(--ink);
+}
+.platform--pending .platform__icon { color: var(--text-muted); }
+.platform__icon svg { width: 100%; height: 100%; }
+.platform__name { flex: 1; }
+.platform__tag {
+  font-family: var(--font-body);
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ============================ EPISODES ============================ */
+
+#episode-list { list-style: none; margin: 0; padding: 0; }
+.episodes { display: grid; gap: 1rem; }
+
+.episode {
+  display: grid; gap: 0.35rem;
+  padding: 1.4rem 1.6rem;
+  border: 2px solid var(--ink-soft);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+.episode__num {
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink);
+}
+.episode__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: var(--ink-deep);
+}
+.episode__title a { color: inherit; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.episode__blurb { margin: 0.2rem 0 0; color: var(--text-muted); }
+.episode__meta { font-size: 0.88rem; color: var(--text-muted); }
+
+.empty {
+  padding: clamp(2rem, 6vw, 3.5rem) 1.5rem;
+  border: 2px dashed var(--ink-soft);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--text-muted);
+}
+.empty strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.45rem);
+  font-weight: 600;
+  color: var(--ink-deep);
+}
+
+/* ============================ FOOTER ============================ */
+
+.footer {
+  margin-top: auto;   /* stays pinned to the bottom on short pages */
+  padding: 2.75rem 0;
+  background: var(--ink);
+  color: var(--tan-soft);
+}
+.footer__inner {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 0.6rem 1.5rem;
+}
+.footer__mark {
+  margin: 0;
+  font-family: var(--font-mark);
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.footer__meta { margin: 0; font-size: 0.88rem; opacity: 0.85; }
+
+@media (max-width: 560px) {
+  .footer__inner { flex-direction: column; align-items: flex-start; }
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#ebc07a"/>
+
+  <g fill="#844226" font-family="Georgia, 'Times New Roman', serif" font-weight="bold"
+     text-anchor="middle" letter-spacing="14">
+    <text x="607" y="150" font-size="76">THEY HAVE</text>
+    <text x="607" y="240" font-size="76">A THEORY</text>
+  </g>
+
+  <line x1="240" y1="288" x2="960" y2="288" stroke="#a4674a" stroke-width="3"/>
+
+  <g fill="none" stroke="#844226" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- left figure -->
+    <circle cx="420" cy="370" r="34"/>
+    <path d="M420 404v130"/>
+    <path d="M348 470 468 425"/>
+    <path d="M420 534 388 590M420 534 452 590"/>
+    <g transform="translate(455 360) rotate(14)">
+      <path d="M8 12 56 4 70 18 62 72 14 80Z"/>
+      <path d="M56 4 54 18 70 18"/>
+      <g stroke-width="3.5">
+        <path d="M20 30 54 24M21 42 55 36M22 54 48 49"/>
+      </g>
+    </g>
+
+    <!-- right figure -->
+    <circle cx="780" cy="370" r="34"/>
+    <path d="M780 404v130"/>
+    <path d="M852 470 732 425"/>
+    <path d="M780 534 748 590M780 534 812 590"/>
+    <g transform="translate(686 352) rotate(-8)">
+      <path d="M22 6h48a19 19 0 0 1 19 19c0 9-3 22-9 29-5 6-13 4-16-2l-5-11H33l-5 11c-3 6-11 8-16 2-6-7-9-20-9-29A19 19 0 0 1 22 6Z"/>
+      <g stroke-width="3.5">
+        <path d="M20 25h12M26 19v12"/>
+        <circle cx="65" cy="19" r="3"/><circle cx="74" cy="28" r="3"/>
+        <circle cx="56" cy="28" r="3"/><circle cx="65" cy="37" r="3"/>
+      </g>
+    </g>
+  </g>
+
+  <text x="600" y="614" text-anchor="middle" fill="#5f2f19" font-size="26"
+        font-family="Helvetica, Arial, sans-serif" letter-spacing="6">COMING OUT SOON</text>
+</svg>

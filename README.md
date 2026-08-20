@@ -1,2 +1,3 @@
 # THAT
-They Have a Theory Landing Site
+
+Landing site for **They Have a Theory**, a podcast
