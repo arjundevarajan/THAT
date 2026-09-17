@@ -9,11 +9,13 @@
    Leave `url` as null and the card renders greyed out as "Soon".
    Fill the url in and it becomes a real link automatically. */
 const PLATFORMS = [
+  /* live — first row */
+  { name: "YouTube",        url: "https://www.youtube.com/@ThaTheoryPod",   icon: "youtube" },
+  { name: "TikTok",         url: "https://www.tiktok.com/@thatheorypod",    icon: "tiktok" },
+  { name: "Instagram",      url: "https://www.instagram.com/thatheorypod/", icon: "instagram" },
+  /* coming — second row */
   { name: "Spotify",        url: null, icon: "spotify" },
   { name: "Apple Podcasts", url: null, icon: "apple" },
-  { name: "YouTube",        url: null, icon: "youtube" },
-  { name: "TikTok",         url: null, icon: "tiktok" },
-  { name: "Instagram",      url: null, icon: "instagram" },
   { name: "RSS feed",       url: null, icon: "rss" },
 ];
 

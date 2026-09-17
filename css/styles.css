@@ -163,8 +163,12 @@ body {
 .platforms {
   list-style: none; margin: 0; padding: 0;
   display: grid; gap: 0.9rem;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  /* fixed 3 columns keeps live/coming as two distinct rows;
+     drops to 2, then 1, as the viewport gets narrower */
+  grid-template-columns: repeat(3, 1fr);
 }
+@media (max-width: 720px) { .platforms { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .platforms { grid-template-columns: 1fr; } }
 
 .platform {
   display: flex; align-items: center; gap: 0.9rem;
