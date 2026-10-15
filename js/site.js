@@ -20,17 +20,25 @@ const PLATFORMS = [
 ];
 
 /* Episodes. Add newest last — they're numbered in order.
-   Example of a filled-in one:
+   `embed` is the YouTube video id (the part after youtu.be/ or v=);
+   when present, the episode card renders the player inline.
+   All other fields are optional.
 
    {
-     title: "Why every tutorial level is a lie",
-     url:   "https://open.spotify.com/episode/xxxx",
-     date:  "March 3, 2026",
-     length: "48 min",
-     blurb: "A short line about what you two got into."
+     title:  "Why every tutorial level is a lie",
+     embed:  "dQw4w9WgXcQ",                        // optional
+     url:    "https://open.spotify.com/episode/x",  // optional
+     date:   "March 3, 2026",                       // optional
+     length: "48 min",                              // optional
+     blurb:  "A short line about what you got into."
    }
 */
-const EPISODES = [];
+const EPISODES = [
+  {
+    title: "Don't Let Your Dog Listen to This P-O-D-C-A-S-T",
+    embed: "Cwsw9ueE2iI",
+  },
+];
 
 /* Shown in the Episodes section while EPISODES is still empty. */
 const EPISODES_EMPTY = "Episode 1 coming shortly!";
@@ -97,12 +105,24 @@ function renderEpisodes() {
       ? `<a href="${ep.url}" target="_blank" rel="noopener">${ep.title}</a>`
       : ep.title;
     const meta = [ep.date, ep.length].filter(Boolean).join(" · ");
+    const embed = ep.embed
+      ? `<div class="episode__embed">
+           <iframe
+             src="https://www.youtube-nocookie.com/embed/${ep.embed}"
+             title="Episode ${n}: ${ep.title.replace(/"/g, "&quot;")}"
+             loading="lazy"
+             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+             allowfullscreen
+             referrerpolicy="strict-origin-when-cross-origin"></iframe>
+         </div>`
+      : "";
 
     return `<li class="episode">
       <span class="episode__num">Episode ${n}</span>
       <h3 class="episode__title">${title}</h3>
       ${ep.blurb ? `<p class="episode__blurb">${ep.blurb}</p>` : ""}
       ${meta ? `<span class="episode__meta">${meta}</span>` : ""}
+      ${embed}
     </li>`;
   }).join("");
 }
