@@ -14,9 +14,9 @@ const PLATFORMS = [
   { name: "TikTok",         url: "https://www.tiktok.com/@thatheorypod",    icon: "tiktok" },
   { name: "Instagram",      url: "https://www.instagram.com/thatheorypod/", icon: "instagram" },
   /* coming — second row */
-  { name: "Spotify",        url: null, icon: "spotify" },
-  { name: "Apple Podcasts", url: null, icon: "apple" },
-  { name: "RSS feed",       url: null, icon: "rss" },
+  { name: "Spotify",        url: "https://open.spotify.com/show/20YnxhALS0WU5YiJzWqEmj?si=fc5796f71a67499d", icon: "spotify" },
+  { name: "Apple Podcasts", url: "https://podcasts.apple.com/us/podcast/they-have-a-theory/id6823307753",   icon: "apple" },
+  { name: "RSS feed",       url: "https://api.riverside.com/hosting/OGfJS47W.rss",                           icon: "rss" },
 ];
 
 /* Episodes. Add newest last — they're numbered in order.
